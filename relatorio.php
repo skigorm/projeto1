@@ -2,7 +2,7 @@
 
 include "connectBD.php";
 
-$sql = "SELECT * FROM tb_formulario";
+$sql = "SELECT id_nome,nome,email,mensagem FROM tb_formulario";
 
 $consulta = mysqli_query ($connect, $sql);
 
@@ -34,6 +34,7 @@ mysqli_fetch_assoc($consulta);
                         <table class="table table-hover table-striped table-condensed">
                             <theader>
                                 <tr>
+                                    <th>Id</th>
                                     <th>Name</th>
                                     <th>Email</th>
                                     <th>Mensagem</th>
@@ -42,6 +43,7 @@ mysqli_fetch_assoc($consulta);
                             <tbody>
                                 <?php  while ($linha=mysqli_fetch_assoc($consulta)) { ?>
                                 <tr>
+                                    <td><?=$linha["id_nome"]?></td>
                                     <td><?=$linha["nome"]?></td>
                                     <td><?=$linha["email"]?></td>
                                     <td><?=$linha["mensagem"]?></td>
