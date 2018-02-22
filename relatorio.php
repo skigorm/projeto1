@@ -36,7 +36,7 @@ mysqli_fetch_assoc($consulta);
                                 <tr>
                                     <th>Id</th>
                                     <th>Name</th>
-                                    <th>Email</th>
+                                    <th>E-mail</th>
                                     <th>Mensagem</th>
                                 </tr>
                             </theader>
