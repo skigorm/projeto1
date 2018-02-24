@@ -2,29 +2,33 @@
 
 include "connectBD.php";
 
-$sql = "SELECT id_nome,nome,email,mensagem FROM tb_formulario";
+$conn = getConnection();
 
-$consulta = mysqli_query ($connect, $sql);
+$sql = "SELECT id_nome,nome,email,mensagem FROM tb_formulario ORDER BY nome ASC";
 
-mysqli_fetch_assoc($consulta);
+
+$imprimerelatrio=$conn -> prepare($sql);
+$imprimerelatrio->execute();
+
 
 ?> 
+
+
 
 <!doctype html>
 <html lang="pt-br">
     <head>
-        <!-- Required meta tags -->
+        
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-        <!-- Bootstrap CSS -->
         <link rel="stylesheet" href="css/bootstrap.css">
         <link rel="stylesheet" href="css/bootstrap-grid.css">
         <link rel="stylesheet" href="css/bootstrap-grid.min.css">
         <link rel="stylesheet" href="css/bootstrap.min.css">
         
 
-        <title>Projeto 1</title>
+<title>Projeto 1</title>
     </head>
     <body>
         <div class="container-fluid">
@@ -41,7 +45,7 @@ mysqli_fetch_assoc($consulta);
                                 </tr>
                             </theader>
                             <tbody>
-                                <?php  while ($linha=mysqli_fetch_assoc($consulta)) { ?>
+                                <?php  while ($linha=$imprimerelatrio->fetch(PDO::FETCH_ASSOC)){ ?>
                                 <tr>
                                     <td><?=$linha["id_nome"]?></td>
                                     <td><?=$linha["nome"]?></td>
@@ -56,5 +60,21 @@ mysqli_fetch_assoc($consulta);
             </div>
         </div>
         
+
+    <div class="col-sm-2">
+        <form action="index.html">
+          <div class="form-group">
+            <label for="buttonVoltar"></label>
+            <div>
+              <button id="buttoVoltar" name="buttonVoltar" class="btn btn-default">Voltar</button>
+            </div>
+          </div>
+        </form>
+
+      </div>
+
+
     </body>
 </html>
+
+

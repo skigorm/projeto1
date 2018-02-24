@@ -1,7 +1,11 @@
 <?php
 
 // Conexao com banco
+
 include "connectBD.php";
+
+$conn = getConnection();
+
 
 // Recebe os dados de entrada da pagina index.html
 
@@ -13,10 +17,50 @@ $mensagem = $_POST['mensagem'];
 
 $sql = "INSERT INTO tb_formulario (nome,email,mensagem) VALUES ('$nome', '$email', '$mensagem')";
 
-$gravar = mysqli_query ($connect, $sql);
+// gravando no banco e exibindo a mensagem
 
-   // if ($gravar == true) {
-   //     echo "Registro Gravado no banco <br>" ;  
-   // } else {
-   //     echo "Registro NAO   foi gravado no banco <br>";
-   // }
+if ($conn -> exec($sql)){
+
+  echo   'Gravado com sucesso!';
+
+} else {
+
+  echo 'Nao foi salvo';
+
+}
+
+
+?>
+
+<!doctype html>
+<html lang="pt-br">
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="css/bootstrap.css">
+        <link rel="stylesheet" href="css/bootstrap-grid.css">
+        <link rel="stylesheet" href="css/bootstrap-grid.min.css">
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+
+
+        <div class="col-sm-2">
+        <form action="index.html">
+          <div class="form-group">
+            <label for="buttonVoltar"></label>
+            <div>
+              <button id="buttoVoltar" name="buttonVoltar" class="btn btn-default">Voltar ao Cadastro</button>
+            </div>
+          </div>
+        </form>
+
+      </div>
+
+
+    </body>
+</html>
+
+<?php
+
